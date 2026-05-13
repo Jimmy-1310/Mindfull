@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MINDFULL — Coaching Ejecutivo de Vida</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green:      #5A8A56;
+    --green-light:#7aaa76;
+    --sage:       #A3B899;
+    --cream:      #F5F5C0;
+    --navy:       #2E4F7A;
+    --steel:      #8DA0BC;
+    --white:      #FFFFFF;
+    --serif:      'Playfair Display', Georgia, serif;
+    --sans:       'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--navy);
+    background: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(245,245,192,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(46,79,122,0.1);
+    transition: all .3s;
+  }
+  nav.scrolled {
+    padding: .8rem 5%;
+    background: rgba(245,245,192,0.98);
+    box-shadow: 0 2px 20px rgba(46,79,122,0.08);
+  }
+  .logo {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: .12em;
+    text-decoration: none;
+  }
+  .logo span { color: var(--green); }
+  .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: .85rem;
+    font-weight: 500;
+    letter-spacing: .06em;
+    color: var(--navy);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--green); }
+  .btn-nav {
+    background: var(--green);
+    color: var(--white) !important;
+    padding: .55rem 1.3rem;
+    border-radius: 2px;
+    font-size: .8rem !important;
+    letter-spacing: .1em !important;
+  }
+  .btn-nav:hover { background: var(--green-light) !important; color: var(--white) !important; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    background: var(--cream);
+    display: flex; align-items: center;
+    padding: 8rem 5% 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  #hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 80% 50%, rgba(163,184,153,0.25) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(90,138,86,0.1) 0%, transparent 60%);
+  }
+  .hero-inner { max-width: 680px; position: relative; }
+  .hero-tag {
+    display: inline-block;
+    font-size: .75rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--green);
+    font-weight: 500;
+    border: 1px solid var(--green);
+    padding: .3rem .9rem;
+    margin-bottom: 2rem;
+  }
+  .hero-inner h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 5vw, 4.2rem);
+    line-height: 1.12;
+    color: var(--navy);
+    margin-bottom: 1.5rem;
+  }
+  .hero-inner h1 em {
+    font-style: italic;
+    color: var(--green);
+  }
+  .hero-inner p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: #4a6285;
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--green);
+    color: var(--white);
+    padding: .85rem 2rem;
+    font-family: var(--sans);
+    font-size: .85rem;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background .2s, transform .2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--green-light); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--navy);
+    border: 1.5px solid var(--navy);
+    padding: .85rem 2rem;
+    font-family: var(--sans);
+    font-size: .85rem;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all .2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: var(--navy); color: var(--white); }
+  .hero-trust {
+    margin-top: 3.5rem;
+    display: flex; align-items: center; gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex; align-items: center; gap: .5rem;
+    font-size: .82rem;
+    color: #6a82a0;
+    font-weight: 400;
+  }
+  .trust-dot {
+    width: 7px; height: 7px;
+    background: var(--sage);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 6rem 5%; }
+  .section-label {
+    font-size: .75rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--green);
+    font-weight: 500;
+    margin-bottom: .8rem;
+    display: block;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .section-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #4a6285;
+    max-width: 560px;
+    line-height: 1.7;
+  }
+  .section-header { margin-bottom: 4rem; }
+
+  /* ── PAIN SECTION ── */
+  #pain { background: var(--sage); }
+  #pain .section-title { color: var(--white); }
+  #pain .section-sub { color: rgba(255,255,255,.8); }
+  #pain .section-label { color: rgba(255,255,255,.7); border-color: rgba(255,255,255,.3); }
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .pain-card {
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.25);
+    padding: 1.8rem;
+    border-radius: 4px;
+  }
+  .pain-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .pain-card p {
+    font-size: .95rem;
+    color: var(--white);
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .pain-closing {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    color: var(--white);
+    font-style: italic;
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,.2);
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--cream); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .about-photo {
+    width: 100%;
+    aspect-ratio: 3/4;
+    background: var(--sage);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-photo::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 40%;
+    background: linear-gradient(to top, rgba(46,79,122,.3), transparent);
+  }
+  .about-badges {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  .badge {
+    font-size: .78rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid var(--green);
+    padding: .35rem .9rem;
+    border-radius: 2px;
+    font-weight: 500;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--white); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  .service-card {
+    border: 1.5px solid var(--sage);
+    padding: 2.5rem;
+    border-radius: 4px;
+    transition: border-color .3s, transform .3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 0;
+    background: var(--green);
+    transition: height .3s;
+  }
+  .service-card:hover { border-color: var(--green); transform: translateY(-4px); }
+  .service-card:hover::before { height: 100%; }
+  .service-icon {
+    width: 48px; height: 48px;
+    background: var(--cream);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+  .service-card h3 {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: var(--navy);
+    margin-bottom: .8rem;
+  }
+  .service-card .price-tag {
+    font-size: .8rem;
+    color: var(--green);
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: .8rem;
+    display: block;
+  }
+  .service-card p {
+    font-size: .92rem;
+    color: #5a6e88;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  .service-includes {
+    list-style: none;
+    display: flex; flex-direction: column; gap: .5rem;
+  }
+  .service-includes li {
+    font-size: .85rem;
+    color: #5a6e88;
+    display: flex; align-items: flex-start; gap: .5rem;
+  }
+  .service-includes li::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ── PROCESS ── */
+  #process { background: var(--navy); }
+  #process .section-title { color: var(--cream); }
+  #process .section-sub { color: rgba(245,245,192,.6); }
+  #process .section-label { color: var(--sage); }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    position: relative;
+  }
+  .step-card {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    position: relative;
+  }
+  .step-num {
+    font-family: var(--serif);
+    font-size: 5rem;
+    font-weight: 700;
+    color: rgba(163,184,153,.15);
+    line-height: 1;
+    margin-bottom: .5rem;
+    display: block;
+  }
+  .step-card h3 {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--cream);
+    margin-bottom: .8rem;
+  }
+  .step-card p {
+    font-size: .9rem;
+    color: rgba(141,160,188,.8);
+    line-height: 1.6;
+  }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials { background: var(--cream); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  .testi-card {
+    background: var(--white);
+    border: 1px solid rgba(163,184,153,.4);
+    padding: 2.5rem;
+    border-radius: 4px;
+  }
+  .stars { color: var(--green); font-size: 1rem; margin-bottom: 1.2rem; letter-spacing: .1em; }
+  .testi-card blockquote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--navy);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+  .testi-author {
+    display: flex; align-items: center; gap: .8rem;
+  }
+  .author-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--sage);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600;
+    font-size: .85rem;
+    color: var(--navy);
+    flex-shrink: 0;
+  }
+  .author-info strong { display: block; font-size: .9rem; color: var(--navy); }
+  .author-info span { font-size: .8rem; color: var(--steel); }
+
+  /* ── PRICING ── */
+  #pricing { background: var(--white); }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+    align-items: start;
+  }
+  .price-card {
+    border: 1.5px solid var(--sage);
+    padding: 2.5rem;
+    border-radius: 4px;
+    position: relative;
+  }
+  .price-card.featured {
+    border-color: var(--green);
+    border-width: 2px;
+    transform: scale(1.02);
+    box-shadow: 0 8px 40px rgba(90,138,86,.12);
+  }
+  .popular-badge {
+    position: absolute;
+    top: -13px; left: 50%; transform: translateX(-50%);
+    background: var(--green);
+    color: var(--white);
+    font-size: .72rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: .3rem 1.2rem;
+    white-space: nowrap;
+    border-radius: 2px;
+  }
+  .price-tier {
+    font-size: .75rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--green);
+    font-weight: 500;
+    margin-bottom: .5rem;
+    display: block;
+  }
+  .price-card h3 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--navy);
+    margin-bottom: .5rem;
+  }
+  .price-amount {
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--navy);
+    margin: 1rem 0;
+    display: flex; align-items: baseline; gap: .3rem;
+  }
+  .price-amount sup { font-size: 1rem; }
+  .price-amount sub { font-size: .85rem; color: var(--steel); }
+  .price-desc {
+    font-size: .88rem;
+    color: var(--steel);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(163,184,153,.3);
+  }
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: .6rem; margin-bottom: 2rem; }
+  .price-features li {
+    font-size: .88rem;
+    color: #5a6e88;
+    display: flex; gap: .5rem;
+  }
+  .price-features li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+  .btn-price {
+    display: block;
+    text-align: center;
+    padding: .85rem;
+    border-radius: 2px;
+    font-size: .82rem;
+    font-weight: 500;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all .2s;
+  }
+  .btn-price-outline {
+    border: 1.5px solid var(--navy);
+    color: var(--navy);
+  }
+  .btn-price-outline:hover { background: var(--navy); color: var(--white); }
+  .btn-price-filled {
+    background: var(--green);
+    color: var(--white);
+    border: none;
+  }
+  .btn-price-filled:hover { background: var(--green-light); }
+
+  /* ── FAQ ── */
+  #faq { background: var(--cream); }
+  .faq-list { display: flex; flex-direction: column; gap: 1rem; max-width: 800px; margin: 0 auto; }
+  .faq-item {
+    background: var(--white);
+    border: 1px solid rgba(163,184,153,.4);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1.4rem 1.8rem;
+    display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: .95rem;
+    font-weight: 500;
+    color: var(--navy);
+  }
+  .faq-q:hover { background: rgba(163,184,153,.08); }
+  .faq-icon {
+    width: 22px; height: 22px;
+    border: 1.5px solid var(--sage);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .85rem;
+    color: var(--green);
+    flex-shrink: 0;
+    transition: transform .3s;
+    font-style: normal;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease;
+  }
+  .faq-a p {
+    padding: 0 1.8rem 1.4rem;
+    font-size: .92rem;
+    color: #5a6e88;
+    line-height: 1.7;
+  }
+  .faq-item.open .faq-a { max-height: 300px; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--navy); }
+  #contact .section-title { color: var(--cream); }
+  #contact .section-sub { color: rgba(245,245,192,.65); }
+  #contact .section-label { color: var(--sage); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contact-info { padding-top: 1rem; }
+  .contact-info h3 {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    color: var(--cream);
+    font-style: italic;
+    line-height: 1.3;
+    margin-bottom: 2rem;
+  }
+  .contact-item {
+    display: flex; align-items: center; gap: .8rem;
+    margin-bottom: 1rem;
+  }
+  .contact-item-icon {
+    width: 36px; height: 36px;
+    border: 1px solid rgba(163,184,153,.4);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .9rem;
+    color: var(--sage);
+    flex-shrink: 0;
+  }
+  .contact-item span {
+    font-size: .88rem;
+    color: rgba(141,160,188,.8);
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: .4rem; }
+  .form-group label {
+    font-size: .78rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(163,184,153,.8);
+    font-weight: 500;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(163,184,153,.25);
+    padding: .85rem 1rem;
+    color: var(--cream);
+    font-family: var(--sans);
+    font-size: .92rem;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(141,160,188,.5); }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--sage); }
+  .form-group select option { background: var(--navy); color: var(--cream); }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .btn-submit {
+    background: var(--green);
+    color: var(--white);
+    border: none;
+    padding: 1rem 2rem;
+    font-family: var(--sans);
+    font-size: .85rem;
+    font-weight: 500;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+    margin-top: .5rem;
+  }
+  .btn-submit:hover { background: var(--green-light); transform: translateY(-1px); }
+  .form-success {
+    display: none;
+    background: rgba(90,138,86,.2);
+    border: 1px solid var(--green);
+    padding: 1.2rem;
+    border-radius: 2px;
+    color: var(--cream);
+    font-size: .9rem;
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #1a2e4a;
+    padding: 3rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--cream);
+    font-weight: 700;
+    letter-spacing: .12em;
+  }
+  .footer-logo span { color: var(--sage); }
+  .footer-tagline {
+    font-size: .8rem;
+    color: rgba(141,160,188,.6);
+    margin-top: .3rem;
+    font-style: italic;
+    font-family: var(--serif);
+  }
+  .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .footer-links a {
+    font-size: .8rem;
+    color: rgba(141,160,188,.6);
+    text-decoration: none;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--sage); }
+  .footer-copy {
+    font-size: .78rem;
+    color: rgba(141,160,188,.4);
+    white-space: nowrap;
+  }
+
+  /* ── ANIMATIONS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .price-card.featured { transform: scale(1); }
+    footer { flex-direction: column; text-align: center; }
+    .hero-trust { flex-direction: column; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+  🔧 MINDFULL — 3 DATOS QUE DEBES CAMBIAR:
+
+  1. TU_CALENDLY   → Tu link de Calendly, ej: calendly.com/juan-perez
+  2. TU_FORMSPREE  → Tu ID de Formspree,  ej: xpwzabcd
+  3. TU_WHATSAPP   → Tu número completo,  ej: 528112345678
+
+  Busca en el código los 3 textos de arriba y reemplázalos.
+  ¡Eso es todo!
+============================================================ -->
+
+<!-- BANNER DE CONFIGURACIÓN (solo visible hasta que configures) -->
+<div id="config-banner" style="background:#2E4F7A;color:#F5F5C0;padding:.7rem 5%;font-size:.82rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;position:relative;z-index:200;">
+  <span>⚙️ <strong>Modo configuración:</strong> Reemplaza los 3 datos marcados en el código para activar Calendly, WhatsApp y el formulario real.</span>
+  <button onclick="this.parentElement.style.display='none'" style="background:rgba(255,255,255,.15);border:none;color:#F5F5C0;padding:.3rem .8rem;cursor:pointer;border-radius:2px;font-size:.8rem;">Ocultar</button>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="logo">MIND<span>FULL</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">Nosotros</a></li>
+    <li><a href="#services">Servicios</a></li>
+    <li><a href="#process">Proceso</a></li>
+    <li><a href="#testimonials">Testimonios</a></li>
+    <li><a href="#contact" class="btn-nav">Sesión Gratis</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <span class="hero-tag">Coaching Ejecutivo de Vida</span>
+    <h1>Tu carrera prosperó.<br>Ahora <em>reclama tu vida.</em></h1>
+    <p>MINDFULL ayuda a líderes y ejecutivos de alto rendimiento a crear una separación real entre el trabajo y su vida personal — para que ambos puedan florecer.</p>
+    <div class="hero-btns">
+      <!-- 📅 CALENDLY: Cambia TU_CALENDLY por tu link real -->
+      <a href="https://calendly.com/TU_CALENDLY/discovery-call" target="_blank" class="btn-primary">Agenda tu sesión gratuita</a>
+      <a href="#process" class="btn-outline">Cómo funciona</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item"><span class="trust-dot"></span>+200 ejecutivos acompañados</div>
+      <div class="trust-item"><span class="trust-dot"></span>Coach certificado ICF</div>
+      <div class="trust-item"><span class="trust-dot"></span>Sesiones en español e inglés</div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section id="pain">
+  <div class="section-header reveal">
+    <span class="section-label">¿Te suena familiar?</span>
+    <h2 class="section-title">El éxito tiene un costo oculto</h2>
+    <p class="section-sub" style="color:rgba(255,255,255,.75)">Muchos ejecutivos llegan a la cima y descubren que el trabajo los sigue a todas partes.</p>
+  </div>
+  <div class="pain-grid">
+    <div class="pain-card reveal reveal-delay-1">
+      <span class="pain-icon">📱</span>
+      <p>"Reviso el correo durante la cena familiar — y no puedo parar."</p>
+    </div>
+    <div class="pain-card reveal reveal-delay-2">
+      <span class="pain-icon">✈️</span>
+      <p>"Mis vacaciones se sienten como trabajar desde otro lugar."</p>
+    </div>
+    <div class="pain-card reveal reveal-delay-3">
+      <span class="pain-icon">❤️</span>
+      <p>"Mis relaciones personales pagan el precio de mi ambición."</p>
+    </div>
+    <div class="pain-card reveal reveal-delay-3">
+      <span class="pain-icon">😔</span>
+      <p>"Me siento culpable cuando no estoy siendo productivo."</p>
+    </div>
+  </div>
+  <p class="pain-closing reveal">No trabajaste tan duro para perderte a ti mismo en el proceso.</p>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="reveal">
+      <div class="about-photo">🌿</div>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <span class="section-label">El coach</span>
+      <h2 class="section-title">Hola, soy [Tu Nombre]</h2>
+      <p style="font-size:1rem;line-height:1.75;color:#4a6285;margin-bottom:1.2rem;">
+        Pasé 15 años en liderazgo corporativo antes de darme cuenta de que el logro sin equilibrio no es éxito — es un burnout lento. Creé MINDFULL para ayudar a ejecutivos como tú a construir una vida donde la carrera y la humanidad coexistan.
+      </p>
+      <p style="font-size:1rem;line-height:1.75;color:#4a6285;margin-bottom:2rem;">
+        Mi enfoque integra psicología del comportamiento, mindfulness ejecutivo y herramientas de alto rendimiento adaptadas a las presiones reales del mundo corporativo.
+      </p>
+      <div class="about-badges">
+        <span class="badge">ICF Certified</span>
+        <span class="badge">+200 clientes</span>
+        <span class="badge">10 años</span>
+        <span class="badge">Bilingüe ES/EN</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header reveal" style="text-align:center;max-width:600px;margin:0 auto 4rem;">
+    <span class="section-label">Lo que ofrecemos</span>
+    <h2 class="section-title">Programas diseñados para tu realidad</h2>
+    <p class="section-sub" style="margin:0 auto;">Cada programa está pensado para el ritmo y las exigencias del mundo ejecutivo.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon">🧭</div>
+      <span class="price-tag">12 semanas · 1:1 Privado</span>
+      <h3>Executive Reset Program</h3>
+      <p>Un proceso de coaching profundo para redefinir tu relación con el trabajo. Identificamos tus detonadores, diseñamos tus límites y construimos rutinas sostenibles que protegen tu tiempo personal.</p>
+      <ul class="service-includes">
+        <li>12 sesiones semanales de 60 min</li>
+        <li>Marco de límites personalizado</li>
+        <li>Soporte entre sesiones vía WhatsApp</li>
+        <li>Seguimiento de progreso mensual</li>
+      </ul>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon">🌐</div>
+      <span class="price-tag">4 semanas · Grupo reducido</span>
+      <h3>Work-Life Boundary Workshop</h3>
+      <p>Una experiencia de cohorte para equipos o grupos pequeños. Ideal para empresas que desean invertir en el bienestar y la retención de su talento directivo.</p>
+      <ul class="service-includes">
+        <li>4 sesiones en vivo (2h c/u)</li>
+        <li>Workbook descargable</li>
+        <li>Hasta 12 participantes</li>
+        <li>Sesión de seguimiento incluida</li>
+      </ul>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-icon">🎧</div>
+      <span class="price-tag">Acceso ilimitado · Digital</span>
+      <h3>MINDFULL On-Demand</h3>
+      <p>Un programa de video a tu ritmo con marcos de trabajo, ejercicios y herramientas para comenzar a reclamar tu tiempo cuando y donde quieras.</p>
+      <ul class="service-includes">
+        <li>6 módulos en video</li>
+        <li>Plantillas y ejercicios descargables</li>
+        <li>Acceso de por vida</li>
+        <li>Comunidad privada de práctica</li>
+      </ul>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon">🏢</div>
+      <span class="price-tag">Cotización personalizada · Empresas</span>
+      <h3>Corporate Wellness Package</h3>
+      <p>Programa a medida para organizaciones que buscan reducir el burnout, mejorar el engagement y construir una cultura de alto rendimiento sostenible.</p>
+      <ul class="service-includes">
+        <li>Diagnóstico organizacional</li>
+        <li>Talleres presenciales o virtuales</li>
+        <li>Coaching ejecutivo individual</li>
+        <li>Reporte de impacto trimestral</li>
+      </ul>
+    </div>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon">🔥</div>
+      <span class="price-tag">6 semanas · Intensivo</span>
+      <h3>Burnout Recovery Sprint</h3>
+      <p>Para quienes ya están al límite. Un programa intensivo y estructurado para recuperar energía, claridad y perspectiva antes de que el agotamiento se convierta en crisis.</p>
+      <ul class="service-includes">
+        <li>2 sesiones semanales de 45 min</li>
+        <li>Plan de recuperación energética</li>
+        <li>Protocolo de desconexión digital</li>
+        <li>Check-in de emergencia disponible</li>
+      </ul>
+    </div>
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-icon">🎯</div>
+      <span class="price-tag">Sesión única · Evaluación</span>
+      <h3>Clarity Session</h3>
+      <p>Una sesión diagnóstica de 90 minutos para ejecutivos que necesitan claridad inmediata sobre sus prioridades, límites y siguiente paso sin un compromiso de largo plazo.</p>
+      <ul class="service-includes">
+        <li>Diagnóstico de balance actual</li>
+        <li>Mapa de prioridades personalizado</li>
+        <li>Plan de acción de 30 días</li>
+        <li>Grabación de la sesión incluida</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-header reveal" style="text-align:center;max-width:600px;margin:0 auto 4rem;">
+    <span class="section-label">El método</span>
+    <h2 class="section-title">Cómo funciona MINDFULL</h2>
+    <p class="section-sub" style="color:rgba(245,245,192,.6);margin:0 auto;">Un proceso claro, humano y adaptado a tu agenda ejecutiva.</p>
+  </div>
+  <div class="process-steps">
+    <div class="step-card reveal reveal-delay-1">
+      <span class="step-num">01</span>
+      <h3>Discovery Call</h3>
+      <p>Conversación gratuita de 30 min. Exploramos dónde estás, adónde quieres ir y si MINDFULL es el fit correcto para ti.</p>
+    </div>
+    <div class="step-card reveal reveal-delay-2">
+      <span class="step-num">02</span>
+      <h3>Tu Mapa Personal</h3>
+      <p>Diseñamos juntos un plan de coaching adaptado a tu agenda, tus metas y las presiones específicas de tu industria.</p>
+    </div>
+    <div class="step-card reveal reveal-delay-3">
+      <span class="step-num">03</span>
+      <h3>Trabajo Real</h3>
+      <p>Construimos hábitos, límites y mentalidades que duran más allá de nuestras sesiones. Sin fórmulas. Con resultados.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-header reveal" style="text-align:center;max-width:600px;margin:0 auto 4rem;">
+    <span class="section-label">Resultados reales</span>
+    <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testi-card reveal reveal-delay-1">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Después de 6 meses con MINDFULL, tomé mis primeras vacaciones reales en 8 años. Mi equipo notó la diferencia antes que yo."</blockquote>
+      <div class="testi-author">
+        <div class="author-avatar">CM</div>
+        <div class="author-info">
+          <strong>Carlos M.</strong>
+          <span>CFO, Empresa Manufacturera</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-2">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Llegué escéptica. Me fui con una relación completamente diferente con mi teléfono, mi agenda y mi familia."</blockquote>
+      <div class="testi-author">
+        <div class="author-avatar">AR</div>
+        <div class="author-info">
+          <strong>Andrea R.</strong>
+          <span>VP de Operaciones, Tech Scale-up</span>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card reveal reveal-delay-3">
+      <div class="stars">★★★★★</div>
+      <blockquote>"MINDFULL no me pidió ser menos ambicioso. Me ayudó a ser ambicioso en las direcciones correctas."</blockquote>
+      <div class="testi-author">
+        <div class="author-avatar">RS</div>
+        <div class="author-info">
+          <strong>Roberto S.</strong>
+          <span>Director General, Consultoría</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-header reveal" style="text-align:center;max-width:600px;margin:0 auto 4rem;">
+    <span class="section-label">Inversión</span>
+    <h2 class="section-title">Elige tu punto de entrada</h2>
+    <p class="section-sub" style="margin:0 auto;">Todos los planes incluyen una sesión de discovery gratuita antes de comprometerte.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card reveal reveal-delay-1">
+      <span class="price-tier">Starter</span>
+      <h3>On-Demand</h3>
+      <div class="price-amount"><sup>$</sup>297<sub>/ pago único</sub></div>
+      <p class="price-desc">Programa digital autoguiado. Ideal para quienes quieren comenzar a su ritmo.</p>
+      <ul class="price-features">
+        <li>6 módulos en video</li>
+        <li>Workbook descargable</li>
+        <li>Plantillas de límites y rutinas</li>
+        <li>Acceso de por vida</li>
+      </ul>
+      <a href="https://calendly.com/TU_CALENDLY/discovery-call" target="_blank" class="btn-price btn-price-outline">Comenzar ahora</a>
+    </div>
+    <div class="price-card featured reveal reveal-delay-2">
+      <span class="popular-badge">Más popular</span>
+      <span class="price-tier">Growth</span>
+      <h3>Executive Reset</h3>
+      <div class="price-amount"><sup>$</sup>2,400<sub>/ 12 semanas</sub></div>
+      <p class="price-desc">Coaching 1:1 profundo. El programa de transformación completa para ejecutivos.</p>
+      <ul class="price-features">
+        <li>12 sesiones privadas de 60 min</li>
+        <li>Marco de límites personalizado</li>
+        <li>Soporte WhatsApp entre sesiones</li>
+        <li>Seguimiento de progreso</li>
+        <li>Sesión de cierre + plan anual</li>
+      </ul>
+      <a href="https://calendly.com/TU_CALENDLY/discovery-call" target="_blank" class="btn-price btn-price-filled">Agendar discovery call</a>
+    </div>
+    <div class="price-card reveal reveal-delay-3">
+      <span class="price-tier">Teams</span>
+      <h3>Corporate</h3>
+      <div class="price-amount" style="font-size:1.6rem;">Cotización<sub style="font-size:.8rem;"> a medida</sub></div>
+      <p class="price-desc">Para organizaciones que invierten en el bienestar sostenible de su liderazgo.</p>
+      <ul class="price-features">
+        <li>Diagnóstico organizacional</li>
+        <li>Talleres grupales (hasta 20 personas)</li>
+        <li>Coaching ejecutivo individual</li>
+        <li>Factura corporativa disponible</li>
+        <li>Reporte de impacto incluido</li>
+      </ul>
+      <a href="#contact" class="btn-price btn-price-outline">Solicitar propuesta</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="section-header reveal" style="text-align:center;max-width:600px;margin:0 auto 3rem;">
+    <span class="section-label">Preguntas frecuentes</span>
+    <h2 class="section-title">Todo lo que necesitas saber</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item reveal">
+      <button class="faq-q">¿Esto es terapia o coaching? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><p>El coaching de vida se enfoca en el presente y el futuro: tus metas, hábitos, límites y acciones concretas. No trabajamos traumas del pasado ni diagnosticamos condiciones de salud mental. Si necesitas apoyo terapéutico, con gusto te referimos con profesionales. MINDFULL es para ejecutivos funcionales que quieren optimizar su vida, no solo su carrera.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q">¿Cómo se realizan las sesiones? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><p>Todas las sesiones son virtuales vía Zoom o Google Meet, lo que te da flexibilidad total desde cualquier ciudad. Si estás en Monterrey o Ciudad de México, también ofrecemos sesiones presenciales en espacios seleccionados. Cada sesión queda disponible en grabación para que puedas revisarla cuando quieras.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q">Tengo una agenda muy demandante. ¿Realmente funcionará para mí? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><p>Absolutamente — de hecho, MINDFULL fue diseñado específicamente para personas con agendas ejecutivas. Nuestras sesiones duran 60 minutos, son agendables con una semana de anticipación, y todo el trabajo entre sesiones está diseñado para integrarse a tu día sin fricción. La premisa no es que tengas más tiempo — es que uses mejor el que ya tienes.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q">¿Cuándo puedo esperar ver resultados? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><p>La mayoría de los clientes reportan cambios perceptibles en sus primeras 3-4 semanas: mayor claridad, primeras conversaciones de límites con sus equipos, y noches sin revisar el correo. Los cambios estructurales más profundos — en identidad, relaciones y cultura personal — generalmente consolidan entre la semana 8 y 12.</p></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q">¿Qué pasa si necesito reprogramar una sesión? <span class="faq-icon">+</span></button>
+      <div class="faq-a"><p>Entendemos que los imprevistos ejecutivos son parte de la realidad. Puedes reprogramar cualquier sesión con hasta 24 horas de anticipación sin costo. Para cambios de último momento, trabajamos contigo caso por caso — porque tu progreso importa más que la rigidez del proceso.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <span class="section-label">Hablemos</span>
+      <h3>"¿Listo para dejar de dejar tu vida para después?"</h3>
+      <p style="font-size:.9rem;color:rgba(141,160,188,.7);line-height:1.7;margin-bottom:2rem;">La discovery call es completamente gratuita, sin presión y sin compromiso. Es solo una conversación honesta sobre dónde estás y adónde quieres ir.</p>
+      <div class="contact-item">
+        <div class="contact-item-icon">✉</div>
+        <span>hola@mindfull.co</span>
+      </div>
+      <!-- 💬 WHATSAPP: Cambia TU_WHATSAPP por tu número, ej: 528112345678 -->
+      <a href="https://wa.me/TU_WHATSAPP?text=Hola%2C%20vi%20tu%20p%C3%A1gina%20de%20MINDFULL%20y%20me%20gustar%C3%ADa%20agendar%20mi%20discovery%20call" target="_blank" style="text-decoration:none;">
+        <div class="contact-item">
+          <div class="contact-item-icon">📲</div>
+          <span style="color:rgba(141,160,188,.8);">WhatsApp — Escríbeme directo →</span>
+        </div>
+      </a>
+      <div class="contact-item">
+        <div class="contact-item-icon">🔗</div>
+        <span>LinkedIn: /in/mindfullcoaching</span>
+      </div>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <!-- 📬 FORMSPREE: Cambia TU_FORMSPREE por tu ID real, ej: xpwzabcd -->
+      <form class="contact-form" action="https://formspree.io/f/TU_FORMSPREE" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre completo</label>
+            <input type="text" name="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label>Correo electrónico</label>
+            <input type="email" name="email" placeholder="tu@correo.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Teléfono / WhatsApp</label>
+            <input type="tel" name="telefono" placeholder="+52 81 0000 0000">
+          </div>
+          <div class="form-group">
+            <label>Tu industria</label>
+            <select name="industria">
+              <option value="">Selecciona...</option>
+              <option>Finanzas / Banca</option>
+              <option>Tecnología</option>
+              <option>Legal</option>
+              <option>Salud</option>
+              <option>Consultoría</option>
+              <option>Manufactura / Industrial</option>
+              <option>Retail / Consumer</option>
+              <option>Otro</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>¿Cuál es tu mayor reto ahora mismo?</label>
+          <textarea name="mensaje" placeholder="Cuéntame en tus palabras..."></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="🌿 Nueva consulta desde MINDFULL">
+        <input type="hidden" name="_next" value="https://TU_SITIO.netlify.app/#gracias">
+        <button type="submit" class="btn-submit">Solicitar mi sesión gratuita →</button>
+        <div class="form-success" id="successMsg">
+          ✓ ¡Mensaje enviado! Te contactaré en menos de 24 horas para agendar tu discovery call.
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">MIND<span>FULL</span></div>
+    <div class="footer-tagline">Una vida bien vivida incluye más que tu carrera.</div>
+  </div>
+  <div class="footer-links">
+    <a href="#about">Nosotros</a>
+    <a href="#services">Servicios</a>
+    <a href="#pricing">Precios</a>
+    <a href="#contact">Contacto</a>
+    <a href="#">Privacidad</a>
+  </div>
+  <div class="footer-copy">© 2026 MINDFULL. Todos los derechos reservados.</div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('successMsg').style.display = 'block';
+    e.target.querySelectorAll('input,select,textarea,button').forEach(el => el.disabled = true);
+  }
+</script>
+</body>
+</html>
